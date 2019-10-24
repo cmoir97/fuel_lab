@@ -1,28 +1,34 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="html">
+<div>
+  <h1>Fuel Usage</h1>
+
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
+  data(){
+    return {
+      fetchedData: [],
+      organisedData: []
+    }
+  },
   components: {
-    HelloWorld
+    // 'fuel-chart': FuelChart
+  },
+  methods: {
+    organiseData(){
+      console.log("hi")
+    }
+  },
+  mounted(){
+    this.organiseData()
+    fetch('https://api.carbonintensity.org.uk/generation')
+    .then(res => res.json())
+    .then(fetchedData => this.fetchedData = fetchedData)
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="css" scoped>
 </style>
