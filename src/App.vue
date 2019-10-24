@@ -9,7 +9,7 @@
 export default {
   data(){
     return {
-      fetchedData: [],
+      data: [],
       organisedData: []
     }
   },
@@ -18,14 +18,16 @@ export default {
   },
   methods: {
     organiseData(){
-      console.log("hi")
+      console.log(this.organisedData.generationmix)
     }
   },
   mounted(){
-    this.organiseData()
     fetch('https://api.carbonintensity.org.uk/generation')
     .then(res => res.json())
-    .then(fetchedData => this.fetchedData = fetchedData)
+    .then((fetchedData) => {
+      this.data = fetchedData.data.generationmix;
+    }
+    )
   }
 }
 </script>
